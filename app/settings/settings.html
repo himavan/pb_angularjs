@@ -1,0 +1,71 @@
+<div class="container">
+    <form name="form"> 
+        <div class="md-whiteframe-4dp fav">
+            <div class="item-head md-primary" md-colors="{background: 'primary-600'}"> User Profile</div>
+            <md-content layout-margin style="background:white;font-size:12px">
+                <div layout="row" layout-xs="column">
+                    <div flex="100" flex-gt-xs="33">
+                        <div class="md-whiteframe-2dp contact-img">
+                            <img ng-click="editImage()" class="contact-img" ng-src="{{item.image}}">
+                        </div>
+                    </div>
+                    <div flex="100" flex-gt-xs="66">
+                        <md-input-container class="md-block" style="margin-top: 15px;">
+                            <md-icon md-svg-src="/app/img/icons/person.svg" class="name"></md-icon>
+                            <input ng-model="item.name" type="text" placeholder="Name" ng-required="true" ng-minlength=5>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <md-icon md-svg-src="/app/img/icons/email.svg" class="email"></md-icon>
+                            <input ng-model="item.email" type="email" placeholder="Email" ng-required="true" ng-minlength=5>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <md-icon md-svg-src="/app/img/icons/location.svg" class="address"></md-icon>
+                            <input ng-model="item.address" type="text" placeholder="Address" ng-required="true" ng-minlength=5>
+                        </md-input-container>
+                        <p>*All fields should have minimum 5 characters</p>
+                    </div>
+                </div>
+                <!-- <div layout="row">
+                    <span flex></span>
+                    <md-button ng-click="update(item)" class="md-primary md-raised"> Update </md-button>
+                </div> -->
+            </md-content>
+        </div>
+        <div class="md-whiteframe-4dp fav">
+            <div class="item-head md-primary" md-colors="{background: 'primary-600'}"> User Contact Groups </div>
+            <md-content layout-margin style="background:white;font-size:12px">
+                <md-chips style="text-transform:capitalize;" ng-model="groups" placeholder="Add Group" layout-margin md-on-remove="removeGroup($chip)"
+                    md-on-add="addGroup($chip)">
+                    <button md-chip-remove class="md-accent groupchip">
+                        <md-icon md-svg-icon="/app/img/icons/close.svg"></md-icon>
+                    </button></md-chips>
+            </md-content>
+        </div>
+        <div class="md-whiteframe-4dp fav">
+            <div class="item-head md-primary" md-colors="{background: 'primary-600'}"> User Password Settings </div>
+            <md-content layout-margin style="background:white;font-size:12px;max-width:300px">
+                <div>
+                    <md-input-container class="md-block" style="margin-top: 15px;">
+                        <md-icon md-svg-src="/app/img/icons/lock.svg" class="password"></md-icon>
+                        <input ng-model="item.password" type="password" placeholder="Current Password" ng-required="true" ng-minlength=5>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <md-icon md-svg-src="/app/img/icons/lock.svg" class="password"></md-icon>
+                        <input ng-model="item.newPwd" type="password" placeholder="New Password" ng-required="true" ng-minlength=5>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <md-icon md-svg-src="/app/img/icons/lock.svg" class="password"></md-icon>
+                        <input ng-model="newConfirm" type="password" placeholder="Confirm Password" ng-required="true" ng-minlength=5>
+                    </md-input-container>
+                </div>
+                
+                    <p>*All fields should have minimum 5 characters</p>
+               
+            </md-content>
+        </div>
+                <div layout="row" layout-margin>
+                    <span flex></span>
+                    <md-button ng-click="update(item,newConfirm)" ng-disabled="form.$invalid" class="md-accent md-raised"> update </md-button>
+                </div>
+    </form>
+</div>

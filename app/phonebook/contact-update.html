@@ -1,0 +1,91 @@
+<div class="container" >
+    <form name="form">
+        <div class="md-whiteframe-4dp fav">
+            <div class="item-head md-primary" md-colors="{background: 'primary-600'}"> Update Contact Information </div>
+            <md-content layout-margin style="background:white">
+                    <div class="" flex>
+                        <div layout="row" layout-xs="column">
+                            <div flex="100" flex-gt-xs="33">
+                                <div class="md-whiteframe-2dp contact-img">
+                                    <img ng-click="editImage()" class="contact-img" ng-src="{{item.image}}">
+                                </div>
+                                <div>
+                                    <md-chips ng-model="selectedItems" md-autocomplete-snap="" 
+                                        md-transform-chip="transformChip($chip)" md-require-match='' layout-margin>
+                                        <md-autocomplete md-selected-item='selectedItem' md-search-text='searchText'
+                                            md-items='item in querySearchDeferred(searchText)' md-item-text='item'
+                                            placeholder="Add Group">
+                                            <span md-highlight-text='searchText'>{{item}}</span>
+                                        </md-autocomplete>
+                                        <md-chip-template md">
+                                            <span> {{$chip}}<span>
+                                        </md-chip-template>
+                                        <button md-chip-remove class="md-primary groupchip">
+                                            <md-icon md-svg-icon="/app/img/icons/close.svg"></md-icon>
+                                        </button>
+                                    </md-chips>
+                                </div>
+                            </div>
+                            <div flex="100" flex-gt-xs="66">
+                                <md-input-container class="md-block" style="margin-top: 15px;">
+                                    <md-icon md-svg-src="/app/img/icons/person.svg" class="name"></md-icon>
+                                    <input ng-model="item.name" type="text" placeholder="Name" ng-required="true">
+                                </md-input-container>
+                                <md-input-container class="md-block">
+                                    <md-icon md-svg-src="/app/img/icons/email.svg" class="email"></md-icon>
+                                    <input ng-model="item.email" type="email" placeholder="Email" ng-required="true">
+                                </md-input-container>
+                                <md-input-container class="md-block">
+                                    <md-icon md-svg-src="/app/img/icons/location.svg" class="address"></md-icon>
+                                    <input ng-model="item.address" type="text" placeholder="Address" ng-required="true">
+                                </md-input-container>
+                                <div style="font-size:12px;line-height: 16px" ng-repeat="subItem in item.phone " layout="row">
+                                    <md-input-container >
+                                        <label>Type</label>
+                                        <md-select ng-model="subItem.type" md-selected-text="subItem.type" style="text-transform:capitalize;">
+                                                <md-option value="home" >Home</md-option>
+                                                <md-option value="work" >Work</md-option>
+                                                <md-option value="mobile" >Mobile</md-option>
+                                                <md-option value="other" >Other</md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex="30">
+                                        <md-icon md-svg-src="/app/img/icons/{{subItem.type}}.svg" class="Number"></md-icon>
+                                        <input ng-model="subItem.code" type="text" placeholder="code" ng-required="true"> 
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex="70"> <input ng-model="subItem.number" type="text" placeholder="Number" ng-required="true">
+                                    </md-input-container>
+                                    <div>
+                                        <md-button class="md-icon-button" ng-click="deleteNumber(subItem)">
+                                                <md-icon md-svg-icon="/app/img/icons/delete.svg"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </div>
+                                <div  layout="row">
+                                        <span flex></span>
+                                        <md-button class="md-icon-button" ng-click="addnumber($event)">
+                                                <md-icon md-svg-icon="/app/img/icons/add_box.svg"></md-icon>
+                                        </md-button>
+                                    </div>
+                                <div layout="row">
+                                    <span flex></span>
+                                    <md-button ng-click="back()" class="md-accent"> Cancel </md-button>
+                                    <md-button ng-click="update(item)" class="md-accent md-raised"> Update </md-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                        <div>
+                            <div class="{{msgColor}}">{{msg}}</div>
+                        </div>
+                    </div>
+            </md-content>
+        </div>
+        <!-- <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="update()"> Update</md-button>
+            <md-button ng-click="cancel()" class="md-primary"> Cancel </md-button>
+        </md-dialog-actions> -->
+    </form>
+</div>

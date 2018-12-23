@@ -1,0 +1,34 @@
+<md-dialog aria-label="">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Select Image</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="/app/img/icons/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" layout="row" layout-xs="column" >
+                <div class="md-whiteframe-2dp" style="margin:10px">
+                        <md-button class="md-raised md-primary" type="button" onclick="document.getElementById('fileInput').click()"> Choose Image
+                        </md-button>
+                        <input type="file" id="fileInput" onchange="angular.element(this).scope().handleFileSelect(event)" placeholder="Select Image" ng-required="true" style="display:none">
+                    <div class="cropArea">
+                        <img-crop image="Image" result-image="CroppedImage"></img-crop>
+                    </div>
+                </div>
+                <div  class="md-whiteframe-2dp" style="margin:10px">
+                    <md-button>Cropped Image</md-button>
+                    <div><img ng-src="{{CroppedImage}}" /></div>
+                </div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">Cancel </md-button>
+            <md-button class="md-primary" ng-click="add()"> Update </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

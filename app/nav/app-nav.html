@@ -1,0 +1,56 @@
+<div layout="column"></div>
+    <section layout="row" flex="">
+        <md-sidenav id="side-menu" ng-if="isLoggedIn()" style="width:250px" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar class="md-theme-indigo">
+                <md-button ng-click="close()" class="md-accent md-icon-button btn-close" hide-gt-md="">
+                    <md-icon md-svg-icon="/app/img/icons/close.svg"></md-icon>
+                </md-button>
+                <header md-whiteframe="4">
+                    <div class="header_content">
+                        <img class="logo" ng-src="{{image}}">
+                        <p>{{name}}</p>
+                        <md-button style="font-size:10px" ng-click="logout()" > Sign Out</md-button>
+                    </div>
+                </header>
+            </md-toolbar>
+            <md-content>
+                <md-menu-item>
+                    <a class="md-button" ng-class="isActiveTab('phonebook')" ng-href="/#!/phonebook" ng-click="close()">
+                        <md-icon md-menu-align-target md-svg-icon="/app/img/icons/contacts.svg"></md-icon> Contacts
+                    </a>
+                </md-menu-item>
+                <md-menu-item>
+                    <a class="md-button" ng-class="isActiveTab('settings')" ng-href="/#!/profile" ng-click="close()">
+                        <md-icon md-menu-align-target md-svg-icon="/app/img/icons/settings.svg"></md-icon> User Profile
+                    </a>
+                </md-menu-item>
+                <md-menu-item>
+                    <a class="md-button" ng-class="isActiveTab('support')" ng-href="/#!/support" ng-click="close()">
+                        <md-icon md-menu-align-target md-svg-icon="/app/img/icons/support.svg"></md-icon> Support
+                    </a>
+                </md-menu-item>
+            </md-content>
+        </md-sidenav>
+        <md-content flex="">
+            <md-toolbar md-whiteframe="4" ng-if="isLoggedIn()">
+                <div class="md-toolbar-tools"  ng-if="isVisible()">
+                    <md-button  ng-click="toggleLeft()" class=" md-accent md-icon-button" hide-gt-md="">
+                        <md-icon md-svg-icon="/app/img/icons/menu.svg"></md-icon>
+                    </md-button>
+                    <h2 md-truncate flex>{{title}}</h2>
+                </div>
+                <div class="md-toolbar-tools" ng-if="!isVisible()">
+                    <md-button  ng-click="back()" class=" md-accent md-icon-button">
+                        <md-icon md-svg-icon="/app/img/icons/back.svg"></md-icon>
+                    </md-button>
+                    <h2 md-truncate flex>{{title}}</h2>
+                </div>
+            </md-toolbar>
+            <div ng-view="" style="height: 90vh; overflow-y: scroll;">
+               
+            </div>
+            <div flex=""></div>
+        </md-content>
+    </section>
+</div>
+

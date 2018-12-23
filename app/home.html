@@ -1,0 +1,55 @@
+<div layout="row" layout-xs="column" class="container" ng-controller="HomeCtrl">
+    <div flex class="md-whiteframe-4dp layout-margin card-radius md-margin home-box">
+        <h1> Welcome to Phone Book Application </h1>
+        <p style="padding-bottom:30px">Store and Manage your contacts</p>
+    </div>
+    <div flex class="md-whiteframe-4dp card-radius md-margin home-panel">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Sign in" ng-click="changePanel()">
+                <md-content class="md-padding">
+                    <form>
+                        <div class="input-panel">
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="/app/img/icons/email.svg" class="email"></md-icon>
+                                <input ng-model="user.email" type="email" placeholder="Email" ng-required="true">
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="/app/img/icons/lock.svg" class="password"></md-icon>
+                                <input ng-model="user.password" type="password" placeholder="Password" minlength="5"
+                                    ng-required="true">
+                            </md-input-container>
+                            <div class="{{msgColor}}">{{msg}}</div>
+                        </div>
+                        <div>
+                            <md-button type="button" class="md-raised md-primary" ng-click="login()"> Sign in</md-button>
+                        </div>
+                    </form>
+                </md-content>
+            </md-tab>
+            <md-tab label="Sign up" ng-click="changePanel()">
+                <md-content class="md-padding">
+                    <form>
+                        <div class="input-panel">
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="/app/img/icons/email.svg" class="name"></md-icon>
+                                <input ng-model="usernew.name" type="text" placeholder="Name" ng-required="true">
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="/app/img/icons/email.svg" class="email"></md-icon>
+                                <input ng-model="usernew.email" type="email" placeholder="Email" ng-required="true">
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <md-icon md-svg-src="/app/img/icons/lock.svg" class="password"></md-icon>
+                                <input ng-model="usernew.password" type="password" placeholder="Password" ng-required="true">
+                            </md-input-container>
+                            <div class="{{msgColor}}">{{msg}}</div>
+                        </div>
+                        <div>
+                            <md-button type="button" class="md-raised md-primary" ng-click="logup()"> Sign up</md-button>
+                        </div>
+                    </form>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </div>
+</div>

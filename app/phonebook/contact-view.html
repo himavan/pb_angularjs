@@ -1,0 +1,48 @@
+<div class="outer-container">
+    <div class="container" >
+        <div class="md-whiteframe-4dp" style="max-width: 400px;margin:auto; background: white;border-radius: 5px;overflow:hidden">
+            <!-- <div class="item-head md-primary" md-colors="{background: 'primary-600'}"> Contact Information </div> -->
+            <div style="width:100%; height: 250px; background: rgb(0,0,0,0.2)">
+                    <!-- <img class="contact-img" src="/app/img/user.png"> -->
+            </div>
+            <md-content layout-margin style="background:white">
+                <div>
+                    <div>
+                        <div class="view">
+                            <md-chips md-removable="false" ng-model="selectedItems" readonly="true">
+                            </md-chips>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="attributes">
+                            <md-icon md-svg-src="/app/img/icons/person.svg"></md-icon>
+                            <span class="span-text">{{item.name}}</span>
+                        </div>
+                        <div class="attributes">
+                            <md-icon md-svg-src="/app/img/icons/email.svg"></md-icon>
+                            <span class="span-text">{{item.email}}</span>
+                        </div>
+                        <div class="attributes">
+                            <md-icon md-svg-src="/app/img/icons/location.svg"></md-icon>
+                            <span class="span-text">{{item.address}}</span>
+                        </div>
+                        <div class="attributes" style="font-size:12px;line-height: 16px" ng-repeat="subItem in item.phone " flex>
+                            <md-icon md-svg-src="/app/img/icons/{{subItem.type}}.svg" class="Number"></md-icon>
+                            <span>{{subItem.code}}</span>
+                            <span>{{subItem.number}}</span>
+                        </div>
+                    </div>
+                </div>
+            </md-content>
+            <div layout="row">
+                <span flex></span>
+                <!-- <md-button ng-click="edit(item)">Edit </md-button> -->
+                <!-- <md-button ng-click="cancel()" class="md-primary"> Cancel </md-button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<md-button class="md-fab" id="add_contact" ng-click="edit(item)">
+        <md-icon md-svg-icon="/app/img/icons/edit.svg"></md-icon>
+</md-button>

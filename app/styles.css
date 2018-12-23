@@ -1,0 +1,338 @@
+#side-menu{
+    /* padding:0 25px; */
+    /* background:rgb(248, 248, 255); */
+    height:100vh
+}
+#side-menu nav a{
+    display: flex;
+    position: relative;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    height: 48px;
+    padding: 0 16px;
+    overflow: hidden;
+    font-family: Roboto,sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: .875rem;
+    line-height: 1.375rem;
+    font-weight: 500;
+    letter-spacing: .00714em;
+    outline: none;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+
+#side-menu nav a:hover{
+    background: rgba(0, 0, 0, 0.1);
+    -webkit-transition: opacity 15ms linear;
+    -o-transition: opacity 15ms linear;
+    transition: opacity 15ms linear;
+    z-index: 1; 
+}
+#side-menu nav a:active{
+    color: rgba(85, 26, 139,0.7);
+}
+
+#side-menu nav a:nth-last-child(a){
+    position:absolute;
+    bottom:0;
+}
+
+
+#side-menu nav a span.menu-icon{
+    padding:10px
+}
+
+.logo{
+    height:80px;
+    width:80px;
+    border-radius: 50px;
+    background: #fff;
+}
+
+.header_content{
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align:center;
+    
+}
+
+header{
+    /* background-color: #6200ee; */
+    color: #fff;
+    width:100%;
+    position:relative;
+    
+}
+
+header:before{
+    display: block;
+    padding-top: 80%;
+    content: "";
+}
+
+header p{
+ font-size: 0.7em;
+}
+
+.btn-close{
+    padding: 10px 0 0 10px
+}
+
+.container{
+    max-width: 800px;
+    margin: auto;
+}
+
+.outer-container{
+    margin:10px;
+}
+
+.item-head{
+    padding: 10px;
+}
+.item-body{
+    padding: 10px;
+    overflow-x: scroll;
+
+}
+.grid-item{
+    margin: 5px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100px;
+    padding: 8px;
+    border-radius: 5px;
+    flex: 0 0 auto;
+}
+.grid-item img{
+    height: 50px;
+    width: 50px;
+}
+
+.flexy{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+html{
+    scroll-behavior: smooth
+}
+
+.item-body::-webkit-scrollbar {
+    /* display: none; */
+}
+
+.fav, .all{
+    overflow: hidden;
+    border-radius:5px; 
+    margin: 10px;
+    background: white;
+}
+
+.md-menu-demo {
+    padding: 24px; }
+  
+.menu-demo-container {
+    min-height: 200px; }
+
+p md-icon, .mini-icon{
+    height: 15px!important;
+    width: 15px!important;
+    min-height: 15px!important;
+    min-width: 15px!important;
+    margin-right: 10px;
+}
+
+
+#add_contact {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+  
+.card-radius{
+    border-radius:5px;
+   background: white;
+}
+
+.input-panel{
+    height: 300px;
+}
+
+.active{
+    background: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .mobile-hide{
+        display: none;
+    }
+    md-list-item.md-3-line .md-list-item-text{
+        width: inherit;
+    }
+}
+
+.red{
+    color: red;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    font-size: 12px;
+}
+
+.green{
+    color: green;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+form input, form label{
+    font-size: 12px
+}
+
+.home-box{
+    color:white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: url('/app/img/contact.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.update-panel{
+    width: 300px;
+}
+
+.md-chips{
+    font-size:12px;
+}
+
+/* .group-chip{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+    color: white;
+    fill: white;
+} */
+
+/* .md-chips md-chip .md-chip-remove md-icon {
+    height: 16px;
+    width: 16px;
+    min-height: 16px;
+    min-width: 16px;
+} */
+
+md-chip .md-chip-remove-container {
+    position: absolute;
+    right: 1px;
+    top: 2px;
+    margin-right: 0;
+    height: 24px;
+    padding:0 2px;
+ }
+
+.md-chips.md-removable md-chip .md-chip-content {
+    padding-right: 11px;
+}
+
+button.groupchip {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    transition: background 0.15s linear;
+    display: block; 
+}
+
+button.groupchip md-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+    color: white;
+    fill: white; 
+}
+
+.contact-img{
+    height: 150px;
+    width:150px;
+    border-radius:5px;
+    margin:0 auto 10px auto;
+    background: rgba(0, 0, 0, 0.1)
+}
+
+.image img{
+    height:100px;
+    width:100px;
+}
+
+.details .flex{
+    display:flex;
+}
+
+md-dialog{
+    width: 90%;
+    max-width:800px;
+}
+
+.span-text{
+    font-size:12px;
+}
+
+.attributes{
+    padding-bottom:10px;
+}
+
+.view .md-chips {
+    box-shadow: unset !important;
+}
+
+.md-chips  md-chip{
+    height: 24px !important; 
+    line-height: 24px !important;
+}
+
+md-input-container{
+    margin:0px;
+}
+
+md-list-item.md-3-line .md-list-item-text{
+    width: 450px
+}
+
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width:350px;
+    height:250px;
+  }
+
+md-list-item img{
+    background: rgba(0, 0, 0, 0.1);
+}
+  

@@ -1,0 +1,41 @@
+<md-dialog aria-label="">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add New Number</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="/app/img/icons/close.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" style="max-width:400px">
+                <md-input-container style="text-transform:capitalize; ">
+                    <label>Type</label>
+                    <md-select ng-model="newItem.type">
+                        <md-option value="none" ><em>Select</em></md-option>
+                        <md-option value="home" >Home</md-option>
+                        <md-option value="work" >Work</md-option>
+                        <md-option value="mobile">Mobile</md-option>
+                        <md-option value="other" >Other</md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block" style="margin-top:18px">
+                    <input ng-model="newItem.code" type="text" placeholder="Code" ng-required="true">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input ng-model="newItem.number" type="text" placeholder="number" ng-required="true">
+                </md-input-container>
+            </div>
+            <div>
+                <div class="red">{{msg}}</div>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">Cancel </md-button>
+            <md-button class="md-primary" ng-click="add()"> Add </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

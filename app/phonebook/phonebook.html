@@ -1,0 +1,158 @@
+<div class="container" >
+    <div class="md-whiteframe-4dp fav">
+        <div class="item-head md-primary" md-colors="{background: 'primary-600'}"> My Favourites Contacts </div>
+        <div class="">
+            <md-list-item class="md-3-line" ng-repeat="item in contacts | filter:{'isFavourite':true}" ng-click="view(item)">
+                <img ng-src="{{item.image}}" class="md-avatar" alt="" />
+                <div class="md-list-item-text">
+                    <h3>{{item.name}}</h3>
+                    <p style="font-size:11px;font-weight: 400">
+                        <md-icon md-svg-icon="/app/img/icons/email.svg"></md-icon>{{item.email}}
+                    </p>
+                    <p style="font-size:11px;font-weight: 400">
+                        <md-icon md-svg-icon="/app/img/icons/location.svg"></md-icon>{{item.address}}
+                    </p>
+                </div>
+                <div class="md-list-item-text mobile-hide">
+                    <div style="font-size:11px;height: 20px;line-height: 15px" ng-repeat="subItem in item.phone | limitTo : 2">
+                        <md-icon class="mini-icon" md-svg-icon="/app/img/icons/{{subItem.type}}.svg"></md-icon>
+                        <span>{{subItem.code}}</span>
+                        <span>{{subItem.number}}</span>
+                    </div>
+                </div>
+                <md-menu>
+                    <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+                        <md-icon md-menu-origin md-svg-icon="/app/img/icons/more_vert.svg"></md-icon>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button ng-click="edit($event,item)">
+                                <md-icon md-svg-icon="/app/img/icons/edit.svg" md-menu-align-target></md-icon> Edit
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="toggleFavourite(item)">
+                                <md-icon md-svg-icon="/app/img/icons/fav-{{item.isFavourite? 'on' : 'off'}}.svg"></md-icon>
+                                {{item.isFavourite ? 'Remove from' : 'Add to' }} Favourites
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="checkVoicemail()">
+                                <md-icon md-svg-icon="/app/img/icons/delete.svg"></md-icon>Delete
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-list-item>
+        </div>
+    </div>
+    <div class="all md-whiteframe-4dp">
+        <div class="item-head md-primary" md-colors="{background: 'primary-600'}"> My Contacts </div>
+        <md-content>
+            <md-tabs md-dynamic-height  md-selected="selectedIndex" md-border-bottom md-swipe-content>
+                <md-tab label="All">
+                    <div class="demo-tab ">
+                        <md-list-item class="md-3-line" ng-repeat="item in contacts | filter:{'isFavourite':false} | orderBy : 'name'"
+                            ng-click="view(item)">
+                            <img ng-src="{{item.image}}" class="md-avatar" alt="" />
+                            <div class="md-list-item-text">
+                                <h3>{{item.name}}</h3>
+                                <p style="font-size:11px;font-weight: 400">
+                                    <md-icon md-svg-icon="/app/img/icons/email.svg"></md-icon>{{item.email}}
+                                </p>
+                                <p style="font-size:11px;font-weight: 400">
+                                    <md-icon md-svg-icon="/app/img/icons/location.svg"></md-icon>{{item.address}}
+                                </p>
+                            </div>
+                            <div class="md-list-item-text mobile-hide">
+                                <div style="font-size:11px;height: 20px;line-height: 15px" ng-repeat="subItem in item.phone | limitTo : 2">
+                                    <md-icon class="mini-icon" md-svg-icon="/app/img/icons/{{subItem.type}}.svg"></md-icon>
+                                    <span>{{subItem.code}}</span>
+                                    <span>{{subItem.number}}</span>
+                                </div>
+                            </div>
+                            <md-menu>
+                                <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+                                    <md-icon md-menu-origin md-svg-icon="/app/img/icons/more_vert.svg"></md-icon>
+                                </md-button>
+                                <md-menu-content width="4">
+                                    <md-menu-item>
+                                        <md-button ng-click="edit($event,item)">
+                                            <md-icon md-svg-icon="/app/img/icons/edit.svg" md-menu-align-target></md-icon>
+                                            Edit
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="toggleFavourite(item)">
+                                            <md-icon md-svg-icon="/app/img/icons/fav-{{item.isFavourite? 'on' : 'off'}}.svg"></md-icon>
+                                            {{item.isFavourite ? 'Remove from' : 'Add to' }} Favourites
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="checkVoicemail()">
+                                            <md-icon md-svg-icon="/app/img/icons/delete.svg"></md-icon>Delete
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-list-item>
+                    </div>
+                </md-tab>
+                <md-tab ng-repeat="tab in groups" label="{{tab}}" >
+                    <div class="demo-tab ">
+                        <md-list-item class="md-3-line" ng-repeat="item in contacts | filter:{'group':tab} | orderBy : 'name'"
+                            ng-click="view(item)">
+                            <img ng-src="{{item.image}}" class="md-avatar" alt="" />
+                            <div class="md-list-item-text">
+                                <h3>{{item.name}}</h3>
+                                <p style="font-size:11px;font-weight: 400">
+                                    <md-icon md-svg-icon="/app/img/icons/email.svg"></md-icon>{{item.email}}
+                                </p>
+                                <p style="font-size:11px;font-weight: 400">
+                                    <md-icon md-svg-icon="/app/img/icons/location.svg"></md-icon>{{item.address}}
+                                </p>
+                            </div>
+                            <div class="md-list-item-text mobile-hide">
+                                <div style="font-size:11px;height: 20px;line-height: 15px" ng-repeat="subItem in item.phone | limitTo : 2">
+                                    <md-icon class="mini-icon" md-svg-icon="/app/img/icons/{{subItem.type}}.svg"></md-icon>
+                                    <span>{{subItem.code}}</span>
+                                    <span>{{subItem.number}}</span>
+                                </div>
+                            </div>
+                            <md-menu>
+                                <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdMenu, $event)">
+                                    <md-icon md-menu-origin md-svg-icon="/app/img/icons/more_vert.svg"></md-icon>
+                                </md-button>
+                                <md-menu-content width="4">
+                                    <md-menu-item>
+                                        <md-button ng-click="edit($event,item)">
+                                            <md-icon md-svg-icon="/app/img/icons/edit.svg" md-menu-align-target></md-icon>
+                                            Edit
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="toggleFavourite(item)">
+                                            <md-icon md-svg-icon="/app/img/icons/fav-{{item.isFavourite? 'on' : 'off'}}.svg"></md-icon>
+                                            {{item.isFavourite ? 'Remove from' : 'Add to' }} Favourites
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="checkVoicemail()">
+                                            <md-icon md-svg-icon="/app/img/icons/delete.svg"></md-icon>Delete
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-list-item>
+                    </div>
+                </md-tab>
+            </md-tabs>
+            <div layout-margin style="font-size:12px">
+                {{panelMsg}}
+            </div>
+        </md-content>
+    </div>
+</div>
+<md-button class="md-fab" id="add_contact" ng-click="new()">
+    <md-icon md-svg-icon="/app/img/icons/add.svg"></md-icon>
+</md-button>
