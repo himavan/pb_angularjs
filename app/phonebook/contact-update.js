@@ -3,7 +3,7 @@ angular.module('phonebookApp')
   .controller('ImageController',ImageController);
 
 
-function updateController($scope, updateFactory, $q, filterFilter, $location, $mdDialog, $http,$mdToast) {
+function updateController($scope, updateFactory, $q, filterFilter, $location, $mdDialog, $http,$mdToast,appConfig) {
 
   $scope.typeOptions = ["home", "work", "mobile", "other"];
 
@@ -20,7 +20,7 @@ function updateController($scope, updateFactory, $q, filterFilter, $location, $m
   $scope.deleteNumber = function (subItem) {
     $http({
       method: 'DELETE',
-      url: `http://127.0.0.1:3000/api/contacts/${updateFactory.updateContact._id}/number`,
+      url: `${appConfig.apiUrl}contacts/${updateFactory.updateContact._id}/number`,
       data: subItem
     }).then(function (response) {
       console.log(response)
@@ -36,7 +36,7 @@ function updateController($scope, updateFactory, $q, filterFilter, $location, $m
   $scope.update = function (item) {
     $http({
       method: 'PUT',
-      url: `http://127.0.0.1:3000/api/contacts/update/${item._id}`,
+      url: `${appConfig.apiUrl}contacts/update/${item._id}`,
       data: item
     }).then(function (response) {
       if (response.status === 200) {
@@ -113,7 +113,7 @@ function updateController($scope, updateFactory, $q, filterFilter, $location, $m
   };
 }
 
-function DialogController($scope, $mdDialog, updateFactory, $http) {
+function DialogController($scope, $mdDialog, updateFactory, $http,appConfig) {
   $scope.typeOptions = ["home", "work", "mobile", "other"];
   $scope.msg = '';
   $scope.newItem = {
@@ -134,7 +134,7 @@ function DialogController($scope, $mdDialog, updateFactory, $http) {
 
     $http({
       method: 'POST',
-      url: `http://127.0.0.1:3000/api/contacts/${updateFactory.updateContact._id}`,
+      url: `${appConfig.apiUrl}contacts/${updateFactory.updateContact._id}`,
       data: $scope.newItem
     }).then(function (response) {
       if (response.status === 200) {
@@ -148,7 +148,7 @@ function DialogController($scope, $mdDialog, updateFactory, $http) {
   };
 }
 
-function ImageController($scope, $mdDialog, updateFactory, $http) {
+function ImageController($scope, $mdDialog, updateFactory) {
     $scope.Image='';
     $scope.CroppedImage='';
     $scope.handleFileSelect=function (evt) {

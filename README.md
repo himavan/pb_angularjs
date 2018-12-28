@@ -1,4 +1,4 @@
-# Phonebook App using Nodejs, Expressjs, Mongoose, Angularjs
+# Phonebook App FrontEnd (using  Angularjs)
 
 An App to store contacts of users. And has features like add to favourites, create groups and manage contacts
 
@@ -10,17 +10,15 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to run the project.
 
-* [Nodejs](https://nodejs.org/en/) - Node.js® is a JavaScript runtime executes Javascript code outside the browser.
+* [Phonebook APP API project](https://www.github.com/himavan/pb_api) - is an API for the phonebook app acts as backend for this application. This is very important prerequisites. [Live Demo](https://pb-angularjs.herokuapp.com/) of API.
 
-* [MongoDB](https://www.mongodb.com/) - NoSQL database engine.
+* [Nodejs](https://nodejs.org/en/) - Node.js® is a JavaScript runtime executes Javascript code outside the browser.
 
 * Any Editor - For Code Editing. Recommended [Visual Studio  Editor](https://code.visualstudio.com/).
 
 * [Git](https://git-scm.com/) - Source Version Control. It is optional.
 
-* [Postman](https://www.getpostman.com/) - for testing API.
-
-* Any browser.
+* Any latest browser.
 
 ### Running the project
 
@@ -37,15 +35,13 @@ Steps to run the project.
 3. Install the project dependencies
 
     ```cmd
-        <YOUR DESIRED LOCATION>\phonebook_api>npm install
+        <YOUR DESIRED LOCATION>\phonebook_App>npm install
     ```
 
-4. Start the mongoDB database Server. See [MongoDB documentation](https://docs.mongodb.com/)
-
-5. Run the project by executing follwing command in terminal.
+4. Run the project by executing follwing command in terminal.
 
     ```cmd
-        <YOUR DESIRED LOCATION>\phonebook_api>npm run prod
+        <YOUR DESIRED LOCATION>\phonebook_api>live-server
     ```
 
 ### Using this project
@@ -55,11 +51,15 @@ Steps to use the project.
 * Open your desired browser and navgate to following url. It displays the documentaion of this API.
 
     ```url
-       http://localhost:3000/
+       http://localhost:8080/
     ```
-* It displays the documentaion of this API. Use this documentaion and play with API.
+* It displays the welcome page of the application.
 
-![Doc](https://github.com/himavan/phonebook_api/blob/master/docs/documentation.png)
+* For live demo of this App visit the following link
+
+    ```url
+        http://localhost:8080/
+    ```
 
 ## Authors
 

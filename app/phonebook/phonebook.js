@@ -1,11 +1,22 @@
 angular.module('phonebookApp')
-    .factory('updateFactory', updateFactory)
     .controller('PBController', PBController);
 
-function PBController($scope, $http, $mdToast, updateFactory, $location, $rootScope) {
+function PBController($scope, $http, $mdToast, updateFactory, $location, $rootScope,appConfig) {
+
     $http({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/api/groups/',
+        url: `${appConfig.apiUrl}users/me`
+    }).then(function (response) {
+        if (response.status === 200) {
+           updateFactory.updateUser = response.data; 
+        }
+    }).catch(function (error) {
+        console.log(error)
+    });
+
+    $http({
+        method: 'GET',
+        url: appConfig.apiUrl + 'groups/',
 
     }).then(function (response) {
         if (response.status === 200) {
@@ -23,7 +34,7 @@ function PBController($scope, $http, $mdToast, updateFactory, $location, $rootSc
 
     $http({
         method: 'GET',
-        url: 'http://127.0.0.1:3000/api/contacts/',
+        url: appConfig.apiUrl + 'contacts/',
 
     }).then(function (response) {
         if (response.status === 200) {
@@ -53,7 +64,7 @@ function PBController($scope, $http, $mdToast, updateFactory, $location, $rootSc
 
         $http({
             method: 'PUT',
-            url: `http://127.0.0.1:3000/api/contacts/${item._id}/fav/`,
+            url: `${appConfig.apiUrl}contacts/${item._id}/fav/`,
 
         }).then(function (response) {
             if (response.status === 200) {
@@ -89,20 +100,5 @@ function PBController($scope, $http, $mdToast, updateFactory, $location, $rootSc
         $location.path('/new');
     };
 }
-
-function updateFactory() {
-    var updateContact = null;
-    var updateUser = null;
-    var newUser = null
-    var groups = null;
-
-
-    return { 
-        updateContact: updateContact, 
-        groups: groups, 
-        updateUser: updateUser, 
-        newUser: newUser 
-    };
-};
 
 

@@ -1,5 +1,22 @@
 angular.module('phonebookApp').directive('appNav',nav)
-.controller('AppCtrl', AppCtrl);
+.controller('AppCtrl', AppCtrl).factory('updateFactory', updateFactory);
+
+function updateFactory() {
+    var updateContact = null;
+    var updateUser = {name:'',image:''};
+    var newUser = null
+    var groups = null;
+
+
+    return { 
+        updateContact: updateContact, 
+        groups: groups, 
+        updateUser: updateUser, 
+        newUser: newUser 
+    };
+};
+
+
 
 function nav() {
     return {
@@ -10,7 +27,7 @@ function nav() {
 }
 
 
-function AppCtrl($scope, $timeout, $mdSidenav,AuthFactory,$location,$window, jwtHelper) {
+function AppCtrl($scope, $timeout, $mdSidenav,AuthFactory,$location,$window,updateFactory) {
     
     $scope.title = "Phone Book App"
     $scope.name = 'User'
@@ -19,10 +36,9 @@ function AppCtrl($scope, $timeout, $mdSidenav,AuthFactory,$location,$window, jwt
 
     $scope.isLoggedIn = function() {
         if($window.sessionStorage.token){
-            var decodedToken = jwtHelper.decodeToken( $window.sessionStorage.token)
-            $scope.name = decodedToken.name;
-            $scope.image = decodedToken.image;
-            console.log($scope.image);
+            $scope.name = updateFactory.updateUser.name;
+            $scope.image = updateFactory.updateUser.image;
+            
             return true
         }
         else{

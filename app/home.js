@@ -1,6 +1,6 @@
 angular.module('phonebookApp').controller('HomeCtrl', HomeCtrl);
 
-function HomeCtrl($scope, $http, $location, $window, AuthFactory, jwtHelper) {
+function HomeCtrl($scope, $http, $location, $window, AuthFactory, jwtHelper,appConfig) {
 
     if ($window.sessionStorage.token) {
         $location.path('/phonebook');  
@@ -31,7 +31,7 @@ function HomeCtrl($scope, $http, $location, $window, AuthFactory, jwtHelper) {
                password: $scope.user.password
             };
 
-            $http.post('http://127.0.0.1:3000/api/auth',JSON.stringify(user)).then(function (response) {
+            $http.post( appConfig.apiUrl + 'auth',JSON.stringify(user)).then(function (response) {
                
                 $scope.msg='';
                 if (response.status === 200) {
@@ -63,7 +63,7 @@ function HomeCtrl($scope, $http, $location, $window, AuthFactory, jwtHelper) {
                 password: $scope.usernew.password
             };
 
-            $http.post('http://127.0.0.1:3000/api/users/',JSON.stringify(user)).then(function (response) {
+            $http.post( appConfig.apiUrl +'users/',JSON.stringify(user)).then(function (response) {
                
                 $scope.msg='';
                 if (response.status === 200) {

@@ -41,17 +41,23 @@
                     </button></md-chips>
             </md-content>
         </div>
+        <div layout="row" layout-margin>
+            <span flex></span>
+            <md-button ng-click="update()" ng-disabled="form.$invalid" class="md-accent md-raised"> Update</md-button>
+        </div>
+    </form>
+    <form name="pwdform">
         <div class="md-whiteframe-4dp fav">
             <div class="item-head md-primary" md-colors="{background: 'primary-600'}"> User Password Settings </div>
             <md-content layout-margin style="background:white;font-size:12px;max-width:300px">
                 <div>
                     <md-input-container class="md-block" style="margin-top: 15px;">
                         <md-icon md-svg-src="/app/img/icons/lock.svg" class="password"></md-icon>
-                        <input ng-model="item.password" type="password" placeholder="Current Password" ng-required="true" ng-minlength=5>
+                        <input ng-model="pwdItem.oldPwd" type="password" placeholder="Current Password" ng-required="true" ng-minlength=5>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <md-icon md-svg-src="/app/img/icons/lock.svg" class="password"></md-icon>
-                        <input ng-model="item.newPwd" type="password" placeholder="New Password" ng-required="true" ng-minlength=5>
+                        <input ng-model="pwdItem.newPwd" type="password" placeholder="New Password" ng-required="true" ng-minlength=5>
                     </md-input-container>
                     <md-input-container class="md-block">
                         <md-icon md-svg-src="/app/img/icons/lock.svg" class="password"></md-icon>
@@ -63,9 +69,9 @@
                
             </md-content>
         </div>
-                <div layout="row" layout-margin>
-                    <span flex></span>
-                    <md-button ng-click="update(item,newConfirm)" ng-disabled="form.$invalid" class="md-accent md-raised"> update </md-button>
-                </div>
+        <div layout="row" layout-margin>
+            <span flex></span>
+            <md-button ng-click="updatePwd(pwdItem,newConfirm)" ng-disabled="pwdform.$invalid" class="md-accent md-raised"> Update Password</md-button>
+        </div>
     </form>
 </div>

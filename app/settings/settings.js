@@ -1,14 +1,18 @@
 angular.module('phonebookApp')
     .controller('settingsController', settingsController);
 
-function settingsController($scope, updateFactory, $http, $mdDialog, $mdToast) {
+function settingsController($scope, updateFactory, $http, $mdDialog, $mdToast,appConfig) {
     $scope.item = null
     $scope.groups = [];
     $scope.newConfirm = '';
+    $scope.pwdItem = {
+        newPwd : '',
+        oldPwd : ''
+    }
 
     $http({
         method: 'GET',
-        url: `http://127.0.0.1:3000/api/users/me`
+        url: `${appConfig.apiUrl}users/me`
     }).then(function (response) {
         if (response.status === 200) {
             $scope.item = response.data;
@@ -20,7 +24,7 @@ function settingsController($scope, updateFactory, $http, $mdDialog, $mdToast) {
 
     $http({
         method: 'GET',
-        url: `http://127.0.0.1:3000/api/groups/`
+        url: `${appConfig.apiUrl}groups/`
     }).then(function (response) {
         if (response.status === 200) {
             $scope.groups = response.data;
@@ -43,7 +47,7 @@ function settingsController($scope, updateFactory, $http, $mdDialog, $mdToast) {
     $scope.removeGroup = function(chip) {
         $http({
             method: 'DELETE',
-            url: `http://127.0.0.1:3000/api/groups/${chip}`,
+            url: `${appConfig.apiUrl}groups/${chip}`,
         }).then(function (response) {
             if (response.status === 200) {
                 $scope.groups = response.data.group
@@ -57,7 +61,7 @@ function settingsController($scope, updateFactory, $http, $mdDialog, $mdToast) {
     $scope.addGroup = function(chip) {
         $http({
             method: 'POST',
-            url: `http://127.0.0.1:3000/api/groups/`,
+            url: `${appConfig.apiUrl}groups/`,
             data: {group:$scope.groups}
         }).then(function (response) {
             if (response.status === 200) {
@@ -69,12 +73,14 @@ function settingsController($scope, updateFactory, $http, $mdDialog, $mdToast) {
         });
     }
 
-    $scope.update = function (item, newConfirm) {
-        if (newConfirm === item.newPwd) {
+    $scope.updatePwd =function (pwdItem, newConfirm) {
+
+        if (newConfirm === pwdItem.newPwd) {
+
             $http({
                 method: 'PUT',
-                url: `http://127.0.0.1:3000/api/users/`,
-                data: $scope.item
+                url: `${appConfig.apiUrl}users/password`,
+                data: $scope.pwdItem
             }).then(function (response) {
                 if (response.status === 200) {
                     $mdToast.show(
@@ -91,6 +97,7 @@ function settingsController($scope, updateFactory, $http, $mdDialog, $mdToast) {
                 );
                 console.log(error)
             });
+            
         } else {
             $mdToast.show(
                 $mdToast.simple()
@@ -99,9 +106,33 @@ function settingsController($scope, updateFactory, $http, $mdDialog, $mdToast) {
             );
         }
     }
+
+    $scope.update = function () {
+
+        $http({
+            method: 'PUT',
+            url: `${appConfig.apiUrl}users/`,
+            data: $scope.item
+        }).then(function (response) {
+            if (response.status === 200) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent('Succesfully Details Updated')
+                        .hideDelay(3000)
+                );
+            }
+        }).catch(function (error) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(error.data)
+                    .hideDelay(3000)
+            );
+            console.log(error)
+        });
+    }
 }
 
-function UserImageController($scope, $mdDialog, updateFactory, $http) {
+function UserImageController($scope, $mdDialog, updateFactory) {
     $scope.Image = '';
     $scope.CroppedImage = '';
     $scope.handleFileSelect = function (evt) {

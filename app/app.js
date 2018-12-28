@@ -1,8 +1,12 @@
 angular.module('phonebookApp', ['ngMaterial', 'ngMessages', 'ngRoute','angular-jwt','ngImgCrop'])
     .config(configRoute)
     .config(themeConfig)
-    .run(run);
-
+    .constant('appConfig', {
+        appName: 'Phonebook App',
+        appVersion: 2.0,
+        apiUrl: 'https://pb-angularjs.herokuapp.com/api/'
+    })
+    .run(run) ;
 
 function themeConfig($mdThemingProvider) {
     $mdThemingProvider.theme('default')
@@ -10,7 +14,7 @@ function themeConfig($mdThemingProvider) {
         .accentPalette('orange');
 }
 
-function configRoute($httpProvider, $routeProvider) {
+function configRoute($httpProvider, $routeProvider,) {
 
     $httpProvider.interceptors.push('AuthInterceptor');
 
