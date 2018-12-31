@@ -10,11 +10,12 @@
     "angular-aria": "^1.7.5",
     "angular-material": "^1.1.10",
     "angular-route": "^1.7.5",
-    "angular-messages": "^1.7.5"
+    "angular-messages": "^1.7.5",
+    "live-server": "^1.2.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "live-server"
   },
   "author": "",
   "license": "ISC"
